@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Início</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <style>
-  
+
+    
+
     * {
         margin: 0;
         padding: 0;
@@ -17,9 +20,9 @@
     body {
         height: 100vh;
 
-      
+
         background-image: url("static\imgfundoo.png"),
-                          linear-gradient(180deg, #6d27f5cc 0%, #3a52e0cc 50%, #263d9dcc 100%);
+            linear-gradient(180deg, #6d27f5cc 0%, #3a52e0cc 50%, #263d9dcc 100%);
 
         background-size: cover;
         background-position: center;
@@ -33,7 +36,7 @@
         color: white;
     }
 
-   
+
     .container {
         width: 100%;
         max-width: 420px;
@@ -79,7 +82,7 @@
         font-size: 1.1rem;
         font-weight: 600;
         transition: .2s;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
     }
 
     .criar {
@@ -92,7 +95,8 @@
         color: #4A3200;
     }
 
-    .criar:hover, .entrar:hover {
+    .criar:hover,
+    .entrar:hover {
         filter: brightness(1.1);
     }
 
@@ -106,28 +110,61 @@
     }
 
     @keyframes float {
-        0% { transform: translateY(0); }
-        50% { transform: translateY(-15px); }
-        100% { transform: translateY(0); }
+        0% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-15px);
+        }
+
+        100% {
+            transform: translateY(0);
+        }
     }
 
-    .blue  { background: #00C2FF; }
-    .green { background: #11FF89; }
-    .yellow{ background: #FFD447; }
-    .pink  { background: #FF5C8D; }
+    .blue {
+        background: #00C2FF;
+    }
 
-    
+    .green {
+        background: #11FF89;
+    }
+
+    .yellow {
+        background: #FFD447;
+    }
+
+    .pink {
+        background: #FF5C8D;
+    }
+
+
     @media (max-width: 400px) {
-        h1 { font-size: 1.45rem; }
-        h2 { font-size: 1.1rem; }
-        h3 { font-size: 0.9rem; }
-        .logo { width: 110px; }
-        a.button { width: 85%; }
+        h1 {
+            font-size: 1.45rem;
+        }
+
+        h2 {
+            font-size: 1.1rem;
+        }
+
+        h3 {
+            font-size: 0.9rem;
+        }
+
+        .logo {
+            width: 110px;
+        }
+
+        a.button {
+            width: 85%;
+        }
     }
 </style>
 
 <body>
-     <script>
+    <script>
         const colors = ["blue", "green", "yellow", "pink"];
         const amount = 35; // QUANTIDADE AUMENTADA
 
@@ -135,7 +172,7 @@
             const bubble = document.createElement("span");
             bubble.classList.add("particle", colors[Math.floor(Math.random() * colors.length)]);
 
-            const size = Math.floor(Math.random() * 12) + 6; 
+            const size = Math.floor(Math.random() * 12) + 6;
             bubble.style.width = size + "px";
             bubble.style.height = size + "px";
 
@@ -146,30 +183,152 @@
 
             document.body.appendChild(bubble);
         }
+        const horarios = [
+            "07:15 - 08:00",
+            "08:00 - 08:45",
+            "08:45 - 09:30",
+            "09:45 - 10:30",
+            "10:30 - 11:15",
+            "11:15 - 12:00",
+            "12:00 - 12:45"
+        ];
+
+        const grade = {
+            1: { // 1º PERÍODO
+                segunda: [
+                    "História", "História", "Artes", "Equipe Multidisciplinar",
+                    "Ciência, Tecnologia e Sociedade", "Biologia", "Biologia"
+                ],
+                terca: [
+                    "Física", "Física", "Educação Física", "Geografia",
+                    "Geografia", "Inglês", "Inglês"
+                ],
+                quarta: [
+                    "Ferram. Escritório e Acesso Remoto", "Ferram. Escritório e Acesso Remoto",
+                    "Programação", "Programação",
+                    "Matemática", "Matemática", "Programação"
+                ],
+                quinta: [
+                    "Português", "Português", "Português", "Português",
+                    "Informática Redes", "Informática Redes", "Informática Redes"
+                ],
+                sexta: [
+                    "Projeto e Prática", "Projeto e Prática", "Projeto e Prática",
+                    "Química", "Química", "Filosofia"
+                ]
+            },
+
+            2: { // 2º PERÍODO
+                segunda: [
+                    "Matemática 2", "Matemática 2", "Matemática 2",
+                    "Programação 2", "Programação 2",
+                    "História 2", "História 2"
+                ],
+                terca: [
+                    "Química 2", "Química 2", "Sociologia",
+                    "Sociologia", "Segurança Meio Ambiente",
+                    "Segurança Meio Ambiente", ""
+                ],
+                quarta: [
+                    "Projeto e Prática 2", "Projeto e Prática 2", "Projeto e Prática 2",
+                    "Física 2", "Física 2", "Desenv. Web", "Desenv. Web"
+                ],
+                quinta: [
+                    "Inglês 2", "Inglês 2", "Geografia 2",
+                    "Geografia 2", "Desenv. Web", "Desenv. Web", "Desenv. Web"
+                ],
+                sexta: [
+                    "Banco de Dados", "Banco de Dados", "Biologia 2",
+                    "Português 2", "Português 2", "Português 2", ""
+                ]
+            },
+
+            3: { // 3º PERÍODO
+                segunda: [
+                    "Empreend. Inov. e Startups", "Empreend. Inov. e Startups",
+                    "Empreend. Inov. e Startups", "Artes 2",
+                    "Artes 2", "Física 3", "Física 3"
+                ],
+                terca: [
+                    "Português 3", "Português 3", "Português 3",
+                    "Ed. Física 2", "Ed. Física 2", "Inglês Instrumental", "Inglês Instrumental"
+                ],
+                quarta: [
+                    "Química 3", "Química 3", "Programação 3",
+                    "Programação 3", "Testes de Software", "Testes de Software", "Testes de Software"
+                ],
+                quinta: [
+                    "Matemática 3", "Matemática 3", "Matemática 3",
+                    "Geografia 3", "Geografia 3", "Geografia 3", ""
+                ],
+                sexta: [
+                    "Biologia 3", "Biologia 3", "História 3",
+                    "História 3", "Projeto e Prática 3", "Projeto e Prática 3", "Projeto e Prática 3"
+                ]
+            }
+        };
+
+
+        function mostrarAulas() {
+            const periodo = document.getElementById("periodo").value;
+            const dia = document.getElementById("dia").value;
+
+            const aulas = grade[periodo][dia];
+
+            let html = "";
+
+            for (let i = 0; i < aulas.length; i++) {
+                if (aulas[i] !== "")
+                    html += `<p>• ${aulas[i]} — ${horarios[i]}</p>`;
+            }
+
+            document.getElementById("resultado").innerHTML = html;
+        }
+
     </script>
 
-<div class="container">
-    <h1>Bem-vindo, aluno!</h1>
+    <div class="container">
+        <h1>Bem-vindo, aluno!</h1>
 
-    <div class="card">
-        <h3>Próximas Aulas</h3>
-        <p>• Matemática — 10:20</p>
-        <p>• Programação — 12:10</p>
-        <p>• Banco de Dados — 14:00</p>
+        <div class="card">
+            <h3>Consultar Aulas</h3>
+
+            <label>Ano/Período:</label>
+            <select id="periodo">
+                <option value="1">1º Período</option>
+                <option value="2">2º Período</option>
+                <option value="3">3º Período</option>
+            </select>
+
+            <label>Dia da Semana:</label>
+            <select id="dia">
+                <option value="segunda">Segunda</option>
+                <option value="terca">Terça</option>
+                <option value="quarta">Quarta</option>
+                <option value="quinta">Quinta</option>
+                <option value="sexta">Sexta</option>
+            </select>
+
+            <button onclick="mostrarAulas()">Ver Aulas</button>
+
+            <h3 style="margin-top:15px;">Aulas do Dia:</h3>
+            <div id="resultado"></div>
+        </div>
+
+
+        <div class="card">
+            <h3>Atalhos Rápidos</h3>
+            <a class="button" href="/ecoscan">Eco Scan</a>
+            <a class="button" href="/ifpeflow" style="background:#1E90FF">IFPE Flow</a>
+        </div>
     </div>
 
-    <div class="card">
-        <h3>Atalhos Rápidos</h3>
-        <a class="button" href="/ecoscan">Eco Scan</a>
-        <a class="button" href="/ifpeflow" style="background:#1E90FF">IFPE Flow</a>
+    <div class="navbar">
+        <a href="/home">🏠</a>
+        <a href="/perfil">👤</a>
+        <a href="/config">⚙️</a>
     </div>
-</div>
-
-<div class="navbar">
-    <a href="/home">🏠</a>
-    <a href="/perfil">👤</a>
-    <a href="/config">⚙️</a>
-</div>
 
 </body>
+
 </html>
