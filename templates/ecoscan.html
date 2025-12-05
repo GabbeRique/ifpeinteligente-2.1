@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Eco Scan</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        /* ===== nossa imagem de fundo ===== */
+        body {
+            height: 100vh;
+
+
+            background-image: url("imgfundoo.png"),
+                linear-gradient(180deg, #6d27f5cc 0%, #3a52e0cc 50%, #263d9dcc 100%);
+
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            color: white;
+        }
+
+
+        .container {
+            width: 100%;
+            max-width: 420px;
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+            z-index: 5;
+        }
+
+        /* ------ nossa logo ------ */
+        .logo {
+            width: 250px;
+            margin-bottom: 25px;
+        }
+
+        /* ------ nossos textos------ */
+        h1 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 18px;
+        }
+
+        h3 {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 45px;
+        }
+
+        /* ===== Botões ===== */
+        a.button {
+            display: block;
+            width: 75%;
+            margin: 20px auto;
+            padding: 14px 0;
+            border-radius: 40px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: .2s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+        }
+
+        .criar {
+            background: #47E895;
+            color: #003A1A;
+        }
+
+        .entrar {
+            background: #FFB326;
+            color: #4A3200;
+        }
+
+        .criar:hover,
+        .entrar:hover {
+            filter: brightness(1.1);
+        }
+
+        /* ===== Bolinhas ===== */
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.9;
+            animation: float 6s infinite ease-in-out;
+            z-index: 1;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .blue {
+            background: #00C2FF;
+        }
+
+        .green {
+            background: #11FF89;
+        }
+
+        .yellow {
+            background: #FFD447;
+        }
+
+        .pink {
+            background: #FF5C8D;
+        }
+
+
+        @media (max-width: 400px) {
+            h1 {
+                font-size: 1.45rem;
+            }
+
+            h2 {
+                font-size: 1.1rem;
+            }
+
+            h3 {
+                font-size: 0.9rem;
+            }
+
+            .logo {
+                width: 110px;
+            }
+
+            a.button {
+                width: 85%;
+            }
+        }
+
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #00000090;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+
+        .popup-card {
+            background: white;
+            color: black;
+            width: 90%;
+            max-width: 380px;
+            padding: 25px;
+            border-radius: 18px;
+            text-align: center;
+            animation: fadeIn .3s ease;
+        }
+
+        .popup-card select,
+        .popup-card input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border: 1px solid #888;
+        }
+
+        .btn-confirmar,
+        .btn-cancelar {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border-radius: 10px;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .btn-confirmar {
+            background: #3be06f;
+            color: #00330f;
+        }
+
+        .btn-cancelar {
+            background: #ff4040;
+            color: white;
+        }
+    </style>
+</head>
+<div id="popup" class="popup-overlay">
+    <div class="popup-card">
+        <h2>Registrar Reciclagem</h2>
+
+        <label>Tipo de lixo:</label>
+        <select id="tipo">
+            <option value="papel">Papel</option>
+            <option value="plastico">Plástico</option>
+            <option value="vidro">Vidro</option>
+            <option value="metal">Metal</option>
+            <option value="organico">Orgânico</option>
+        </select>
+
+        <label>Quantidade:</label>
+        <input type="number" id="quantidade" min="1" value="1">
+
+        <button class="btn-confirmar" onclick="registrarLixo()">Confirmar</button>
+        <button class="btn-cancelar" onclick="fecharPopup()">Cancelar</button>
+    </div>
+</div>
+
+<body>
+
+    <!-- Bolinhas pulando -->
+    <script>
+        const colors = ["blue", "green", "yellow", "pink"];
+        const amount = 35; // QUANTIDADE AUMENTADA
+
+        for (let i = 0; i < amount; i++) {
+            const bubble = document.createElement("span");
+            bubble.classList.add("particle", colors[Math.floor(Math.random() * colors.length)]);
+
+            const size = Math.floor(Math.random() * 12) + 6;
+            bubble.style.width = size + "px";
+            bubble.style.height = size + "px";
+
+            bubble.style.top = Math.random() * 100 + "%";
+            bubble.style.left = Math.random() * 100 + "%";
+
+            bubble.style.animationDelay = (Math.random() * 5) + "s";
+
+            document.body.appendChild(bubble);
+        }
+        function abrirPopup() {
+            document.getElementById("popup").style.display = "flex";
+        }
+
+        function fecharPopup() {
+            document.getElementById("popup").style.display = "none";
+        }
+
+        function registrarLixo() {
+            let tipo = document.getElementById("tipo").value;
+            let quantidade = parseInt(document.getElementById("quantidade").value);
+
+            fetch("/registrar_lixo", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    tipo: tipo,
+                    quantidade: quantidade
+                })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    alert("Pontos adicionados: " + data.pontos_adicionados);
+                    fecharPopup();
+                });
+        }
+    </script>
+
+    <div class="container">
+        <h1>Eco Scan</h1>
+
+        <div class="card">
+            <h3>Ler QR Code</h3>
+            <p>Aponte sua câmera para o QR Code da lixeira reciclável.</p>
+            <a class="button">Abrir Câmera</a>
+            <a class="button" onclick="abrirPopup()">Registrar Lixo</a>
+        </div>
+    </div>
+
+    <div class="navbar">
+        <a href="/home">🏠</a>
+        <a href="/perfil">👤</a>
+        <a href="/config">⚙️</a>
+    </div>
+
+</body>
+
+</html>

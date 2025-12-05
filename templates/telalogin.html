@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IFPE + Inteligente</title>
+
+<style>
+  
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+    }
+
+    /* ===== nossa imagem de fundo ===== */
+    body {
+        height: 100vh;
+
+      
+        background-image: url("static\imgfundoo.png"),
+                          linear-gradient(180deg, #6d27f5cc 0%, #3a52e0cc 50%, #263d9dcc 100%);
+
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+        color: white;
+    }
+
+   
+    .container {
+        width: 100%;
+        max-width: 420px;
+        padding: 40px 20px;
+        text-align: center;
+        position: relative;
+        z-index: 5;
+    }
+
+    /* ------ nossa logo ------ */
+    .logo {
+        width: 250px;
+        margin-bottom: 25px;
+    }
+
+    /* ------ nossos textos------ */
+    h1 {
+        font-size: 1.6rem;
+        font-weight: 700;
+        margin-bottom: 4px;
+    }
+
+    h2 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 18px;
+    }
+
+    h3 {
+        font-size: 1rem;
+        opacity: 0.9;
+        margin-bottom: 45px;
+    }
+
+    /* ===== Botões ===== */
+    a.button {
+        display: block;
+        width: 75%;
+        margin: 20px auto;
+        padding: 14px 0;
+        border-radius: 40px;
+        text-decoration: none;
+        font-size: 1.1rem;
+        font-weight: 600;
+        transition: .2s;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    }
+
+    
+    .entrar {
+        background:#47E895;
+        color:  #003A1A;
+    }
+    .criar {
+        background: #ffffff;
+        color: #0a1b7e;
+    }
+
+    .criar:hover,
+    .entrar:hover {
+        filter: brightness(1.1);
+    }
+
+    .criar:hover, .entrar:hover {
+        filter: brightness(1.1);
+    }
+
+    /* ===== Bolinhas ===== */
+    .particle {
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.9;
+        animation: float 6s infinite ease-in-out;
+        z-index: 1;
+    }
+
+    @keyframes float {
+        0% { transform: translateY(0); }
+        50% { transform: translateY(-15px); }
+        100% { transform: translateY(0); }
+    }
+
+    .blue  { background: #00C2FF; }
+    .green { background: #11FF89; }
+    .yellow{ background: #FFD447; }
+    .pink  { background: #FF5C8D; }
+
+    
+    @media (max-width: 400px) {
+        h1 { font-size: 1.45rem; }
+        h2 { font-size: 1.1rem; }
+        h3 { font-size: 0.9rem; }
+        .logo { width: 110px; }
+        a.button { width: 85%; }
+    }
+
+    input {
+  width: 250px;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #0a1b7e;
+  border-radius: 5px;
+  background-color: #0a1b7e;
+}
+
+</style>
+</head>
+
+<body>
+
+    <!-- Bolinhas pulando -->
+    <script>
+        const colors = ["blue", "green", "yellow", "pink"];
+        const amount = 35; // QUANTIDADE AUMENTADA
+
+        for (let i = 0; i < amount; i++) {
+            const bubble = document.createElement("span");
+            bubble.classList.add("particle", colors[Math.floor(Math.random() * colors.length)]);
+
+            const size = Math.floor(Math.random() * 12) + 6; 
+            bubble.style.width = size + "px";
+            bubble.style.height = size + "px";
+
+            bubble.style.top = Math.random() * 100 + "%";
+            bubble.style.left = Math.random() * 100 + "%";
+
+            bubble.style.animationDelay = (Math.random() * 5) + "s";
+
+            document.body.appendChild(bubble);
+        }
+    </script>
+
+    <div class="container">
+
+        <img src="static\logo-removebg-preview.png" class="logo" alt="Logo">
+
+        <h1 style="font-size: 40px;">PLATAFORMA</h1>
+<br>
+<h2 style="font-size: 28px;">IFPE +INTELIGENTE</h2>
+<br><br>
+
+<form action="/login" method="POST">
+
+    <input type="email" name="email" placeholder="Digite seu email" required>
+    <br><br>
+
+    <input type="password" name="senha" placeholder="Senha" required>
+    <br><br>
+
+    <button type="submit" class="button entrar">Entrar</button>
+
+</form>
+
+<br>
+         
+        <h3> <a href="">Esqueceu a senha </a></h3>
+     
+
+    </div>
+</body>
+</html>

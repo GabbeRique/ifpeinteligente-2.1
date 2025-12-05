@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Configurações - IFPE + Inteligente</title>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+    }
+
+    body {
+        height: 100vh;
+        background-image: url("imgfundoo.png"),
+                          linear-gradient(180deg, #6d27f5cc 0%, #3a52e0cc 50%, #263d9dcc 100%);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow-x: hidden;
+        color: white;
+        position: relative;
+    }
+
+    /* Container principal */
+    .container {
+        width: 100%;
+        max-width: 420px;
+        padding: 20px 20px 90px;
+        position: relative;
+        z-index: 5;
+    }
+
+    /* Botão de voltar */
+    .back-btn {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        font-size: 32px;
+        color: #FF5090;
+        text-decoration: none;
+        font-weight: bold;
+        z-index: 10;
+    }
+
+    /* Logo */
+   .logo {
+    width: 180px;  /* antes: 120px */
+    display: block;
+    margin: 40px auto 20px;
+}
+
+    /* Títulos */
+    .titulo-principal {
+        text-align: center;
+        font-size: 18px;
+        opacity: 0.9;
+    }
+
+    .titulo-secundario {
+        text-align: center;
+        margin-top: 3px;
+        margin-bottom: 25px;
+        font-size: 26px;
+        font-weight: 700;
+    }
+
+    /* ======== CARDS ======== */
+    .card {
+        padding: 18px;
+        border-radius: 20px;
+        margin-bottom: 18px;
+        color: white;
+        font-size: 15px;
+    }
+
+    .card h3 {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .card-azul {
+        background: #1d8aff;
+    }
+
+    .card-rosa {
+        background: #ff4fa5;
+    }
+
+    .card-verde {
+        background: #2dcc77;
+    }
+
+    /* Menu inferior */
+   .menu {
+    width: 100%;
+    background: #001a54;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 15px 0;
+    display: flex;
+    justify-content: space-around;
+    color: white;
+    font-size: 14px;
+    text-align: center;
+    z-index: 20;
+    border-radius: 20px 20px 0 0;
+}
+
+    .menu div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 23px;
+    }
+
+    .menu div span {
+        font-size: 23px;
+        margin-bottom: 2px;
+    }
+
+    /* Bolinhas animadas */
+    .particle {
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.9;
+        animation: float 6s infinite ease-in-out;
+        z-index: 1;
+    }
+
+    @keyframes float {
+        0% { transform: translateY(0); }
+        50% { transform: translateY(-15px); }
+        100% { transform: translateY(0); }
+    }
+
+    .blue  { background: #00C2FF; }
+    .green { background: #11FF89; }
+    .yellow{ background: #FFD447; }
+    .pink  { background: #FF5C8D; }
+</style>
+</head>
+
+<body>
+
+<script>
+    const colors = ["blue", "green", "yellow", "pink"];
+    const amount = 35;
+
+    for (let i = 0; i < amount; i++) {
+        const bubble = document.createElement("span");
+        bubble.classList.add("particle", colors[Math.floor(Math.random() * colors.length)]);
+
+        const size = Math.floor(Math.random() * 12) + 6;
+        bubble.style.width = size + "px";
+        bubble.style.height = size + "px";
+        bubble.style.top = Math.random() * 100 + "%";
+        bubble.style.left = Math.random() * 100 + "%";
+        bubble.style.animationDelay = (Math.random() * 5) + "s";
+
+        document.body.appendChild(bubble);
+    }
+</script>
+
+<a href="/home" class="back-btn">←</a>
+
+<div class="container">
+
+    <img src="static\logo-removebg-preview.png" class="logo">
+
+    <p class="titulo-principal">PLATAFORMA</p>
+    <h1 class="titulo-secundario">IFPE +INTELIGENTE</h1>
+
+    <!-- CARD CONTA -->
+    <div class="card card-azul">
+        <h3>👤 CONTA:</h3>
+        <p>EDITAR DADOS</p>
+        <p>TROCAR SENHA</p>
+    </div>
+
+    <!-- CARD PLATAFORMA -->
+    <div class="card card-rosa">
+        <h3>🧩 PLATAFORMA:</h3>
+        <p>IDIOMA</p>
+        <p>ACESSIBILIDADE (ALTO CONTRASTE / FONTES MAIORES)</p>
+        <p>NOTIFICAÇÕES</p>
+    </div>
+
+    <!-- CARD SOBRE -->
+    <div class="card card-verde">
+        <h3>📌 SOBRE:</h3>
+        <p>DESENVOLVIDO POR INTEGRA TECH</p>
+        <p>VERSÃO: 1.0</p>
+    </div>
+    <a class="card card-verde" href="/logout">Deslogar</a>
+</div>
+
+<!-- MENU INFERIOR -->
+<div class="navbar">
+    <div><span>👤</span>Perfil</div>
+    <div><span>🏠</span>Home</div>
+    <div><span>⚙️</span>Configurações</div>
+</div>
+
+</body>
+</html>

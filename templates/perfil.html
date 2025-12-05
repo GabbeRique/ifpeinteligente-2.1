@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil - IFPE + Inteligente</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            background-image: url("imgfundoo.png"),
+                linear-gradient(180deg, #6d27f5cc 0%, #3a52e0cc 50%, #263d9dcc 100%);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow-x: hidden;
+            color: white;
+        }
+
+        /* Container central */
+        .container {
+            width: 100%;
+            max-width: 420px;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            z-index: 5;
+        }
+
+        /* Botão de voltar */
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 32px;
+            color: #FF5090;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Logo */
+        .logo {
+            width: 140px;
+            margin: 15px auto;
+            display: block;
+        }
+
+        /* Foto de perfil */
+        .foto-perfil {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            border: 4px solid white;
+            margin: 15px auto;
+            object-fit: cover;
+        }
+
+        /* Card azul – Dados pessoais */
+        .card-azul {
+            background: #0e75ff;
+            padding: 18px;
+            border-radius: 20px;
+            margin-top: 15px;
+            text-align: left;
+            color: white;
+            font-size: 15px;
+        }
+
+        .card-azul h3 {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        /* Card verde – Estatísticas */
+        .card-verde {
+            background: linear-gradient(180deg, #4fe4b4, #3cc486);
+            padding: 18px;
+            border-radius: 20px;
+            margin-top: 20px;
+            text-align: left;
+            color: white;
+        }
+
+        .card-verde h3 {
+            text-align: center;
+            margin-bottom: 12px;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        /* Botão editar perfil */
+        .editar-btn {
+            display: block;
+            width: 70%;
+            margin: 30px auto;
+            background: #FFC640;
+            color: #5b4300;
+            padding: 12px;
+            text-decoration: none;
+            border-radius: 40px;
+            font-size: 18px;
+            font-weight: 700;
+            transition: .2s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+        }
+
+        .editar-btn:hover {
+            filter: brightness(1.1);
+        }
+
+        /* Bolinhas do fundo */
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.9;
+            animation: float 6s infinite ease-in-out;
+            z-index: 1;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .blue {
+            background: #00C2FF;
+        }
+
+        .green {
+            background: #11FF89;
+        }
+
+        .yellow {
+            background: #FFD447;
+        }
+
+        .pink {
+            background: #FF5C8D;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Bolinhas do fundo -->
+    <script>
+        const colors = ["blue", "green", "yellow", "pink"];
+        const amount = 35;
+
+        for (let i = 0; i < amount; i++) {
+            const bubble = document.createElement("span");
+            bubble.classList.add("particle", colors[Math.floor(Math.random() * colors.length)]);
+
+            const size = Math.floor(Math.random() * 12) + 6;
+            bubble.style.width = size + "px";
+            bubble.style.height = size + "px";
+            bubble.style.top = Math.random() * 100 + "%";
+            bubble.style.left = Math.random() * 100 + "%";
+            bubble.style.animationDelay = (Math.random() * 5) + "s";
+
+            document.body.appendChild(bubble);
+        }
+    </script>
+
+    <div class="container">
+
+        <!-- Botão de voltar -->
+        <a href="/home" class="back-btn">←</a>
+
+        <!-- Logo -->
+        <img src="logo-removebg-preview.png" class="logo">
+
+        <!-- Foto de perfil -->
+        <img src="fotoexemplo.jpg" class="foto-perfil">
+
+        <!-- Dados pessoais -->
+        <div class="card-azul">
+            <h3>MEUS DADOS:</h3>
+            <p><b>NOME:</b> {{ usuario.nome }}</p>
+            <p><b>CURSO:</b> {{ usuario.curso }}</p>
+            <p><b>TURMA:</b> {{ usuario.turma }}</p>
+        </div>
+
+        <!-- Estatísticas-->
+        <div class="card-verde">
+            <h3>ESTATÍSTICAS CONSOLIDADAS:</h3>
+            <p><b>PONTOS ECOSCAN:</b> {{ usuario.pontos }} pts</p>
+            <p><b>LOCAIS VISITADOS (IFPE Flow):</b> {{ usuario.flow_visitas }}</p>
+        </div>
+
+        <!-- Botão Editar Perfil -->
+        <a href="#" class="editar-btn">Editar perfil</a>
+
+    </div>
+    <div class="navbar">
+        <a href="/home">🏠</a>
+        <a href="/perfil">👤</a>
+        <a href="/config">⚙️</a>
+    </div>
+
+</body>
+
+</html>

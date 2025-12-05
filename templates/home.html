@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Início</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<style>
+  
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+    }
+
+    /* ===== nossa imagem de fundo ===== */
+    body {
+        height: 100vh;
+
+      
+        background-image: url("static\imgfundoo.png"),
+                          linear-gradient(180deg, #6d27f5cc 0%, #3a52e0cc 50%, #263d9dcc 100%);
+
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+        color: white;
+    }
+
+   
+    .container {
+        width: 100%;
+        max-width: 420px;
+        padding: 40px 20px;
+        text-align: center;
+        position: relative;
+        z-index: 5;
+    }
+
+    /* ------ nossa logo ------ */
+    .logo {
+        width: 250px;
+        margin-bottom: 25px;
+    }
+
+    /* ------ nossos textos------ */
+    h1 {
+        font-size: 1.6rem;
+        font-weight: 700;
+        margin-bottom: 4px;
+    }
+
+    h2 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 18px;
+    }
+
+    h3 {
+        font-size: 1rem;
+        opacity: 0.9;
+        margin-bottom: 45px;
+    }
+
+    /* ===== Botões ===== */
+    a.button {
+        display: block;
+        width: 75%;
+        margin: 20px auto;
+        padding: 14px 0;
+        border-radius: 40px;
+        text-decoration: none;
+        font-size: 1.1rem;
+        font-weight: 600;
+        transition: .2s;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    }
+
+    .criar {
+        background: #47E895;
+        color: #003A1A;
+    }
+
+    .entrar {
+        background: #FFB326;
+        color: #4A3200;
+    }
+
+    .criar:hover, .entrar:hover {
+        filter: brightness(1.1);
+    }
+
+    /* ===== Bolinhas ===== */
+    .particle {
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.9;
+        animation: float 6s infinite ease-in-out;
+        z-index: 1;
+    }
+
+    @keyframes float {
+        0% { transform: translateY(0); }
+        50% { transform: translateY(-15px); }
+        100% { transform: translateY(0); }
+    }
+
+    .blue  { background: #00C2FF; }
+    .green { background: #11FF89; }
+    .yellow{ background: #FFD447; }
+    .pink  { background: #FF5C8D; }
+
+    
+    @media (max-width: 400px) {
+        h1 { font-size: 1.45rem; }
+        h2 { font-size: 1.1rem; }
+        h3 { font-size: 0.9rem; }
+        .logo { width: 110px; }
+        a.button { width: 85%; }
+    }
+</style>
+
+<body>
+     <script>
+        const colors = ["blue", "green", "yellow", "pink"];
+        const amount = 35; // QUANTIDADE AUMENTADA
+
+        for (let i = 0; i < amount; i++) {
+            const bubble = document.createElement("span");
+            bubble.classList.add("particle", colors[Math.floor(Math.random() * colors.length)]);
+
+            const size = Math.floor(Math.random() * 12) + 6; 
+            bubble.style.width = size + "px";
+            bubble.style.height = size + "px";
+
+            bubble.style.top = Math.random() * 100 + "%";
+            bubble.style.left = Math.random() * 100 + "%";
+
+            bubble.style.animationDelay = (Math.random() * 5) + "s";
+
+            document.body.appendChild(bubble);
+        }
+    </script>
+
+<div class="container">
+    <h1>Bem-vindo, aluno!</h1>
+
+    <div class="card">
+        <h3>Próximas Aulas</h3>
+        <p>• Matemática — 10:20</p>
+        <p>• Programação — 12:10</p>
+        <p>• Banco de Dados — 14:00</p>
+    </div>
+
+    <div class="card">
+        <h3>Atalhos Rápidos</h3>
+        <a class="button" href="/ecoscan">Eco Scan</a>
+        <a class="button" href="/ifpeflow" style="background:#1E90FF">IFPE Flow</a>
+    </div>
+</div>
+
+<div class="navbar">
+    <a href="/home">🏠</a>
+    <a href="/perfil">👤</a>
+    <a href="/config">⚙️</a>
+</div>
+
+</body>
+</html>
